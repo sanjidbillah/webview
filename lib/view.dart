@@ -32,7 +32,7 @@ class _ViewState extends State<View> {
         children: <Widget>[
           WebView(
             initialUrl:
-                'https://www.google.com/',
+                'https://www.google.com',
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController webViewController) {
               _completer.complete(webViewController);
