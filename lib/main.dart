@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:webviewflutter/view.dart';
 
-import 'UrlInpu.dart';
 
 void main() {
   runApp(MaterialApp(
     routes: {
-      '/urlinput': (context) => UrlInpu(),
+      '/view': (context) => View(),
     },
     home: Splash(),
   ));
@@ -20,7 +20,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 1), () {
-      Navigator.pushReplacementNamed(context, "/urlinput");
+      Navigator.pushReplacementNamed(context, "/view");
     });
     super.initState();
   }

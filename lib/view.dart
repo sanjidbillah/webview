@@ -4,9 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class View extends StatefulWidget {
-  var data;
 
-  View(this.data);
 
   @override
   _ViewState createState() => _ViewState();
@@ -34,7 +32,7 @@ class _ViewState extends State<View> {
         children: <Widget>[
           WebView(
             initialUrl:
-                '${widget.data.isEmpty ? "https://grocery.avengersitsolution.com/" : widget.data}',
+                'https://www.google.com/',
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController webViewController) {
               _completer.complete(webViewController);
