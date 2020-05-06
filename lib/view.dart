@@ -2,10 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:webviewflutter/drawer/privacy.dart';
+
+import 'drawer/about.dart';
 
 class View extends StatefulWidget {
-
-
   @override
   _ViewState createState() => _ViewState();
 }
@@ -18,9 +19,7 @@ class _ViewState extends State<View> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
 
     _isLoadingPage = true;
   }
@@ -28,31 +27,65 @@ class _ViewState extends State<View> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Stack(
-        children: <Widget>[
-          WebView(
-            initialUrl:
-                'https://www.google.com',
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController webViewController) {
-              _completer.complete(webViewController);
-            },
-            onPageFinished: (finish) {
-              setState(() {
-                _isLoadingPage = false;
-              });
-            },
+      child: Scaffold(
+        drawer: Drawer(
+          child: Column(
+            children: <Widget>[
+              Image.asset("assets/splash.png"),
+              RaisedButton(
+                color: Colors.white,
+                onPressed: () {},
+                child: Text("Notification"),
+              ),
+              RaisedButton(
+                color: Colors.white,
+                onPressed: () {
+                  Route route=MaterialPageRoute(builder: (context)=>AboutUs());
+                  Navigator.push(context, route);
+                },
+                child: Text("About Us"),
+              ),
+              RaisedButton(
+                color: Colors.white,
+                onPressed: () {
+
+                  Route route=MaterialPageRoute(builder: (context)=>Privacy());
+                  Navigator.push(context, route);
+                },
+                child: Text("Privacy Policy"),
+              ),
+            ],
           ),
-          _isLoadingPage
-              ? Container(
-                  alignment: FractionalOffset.center,
-                  child: SpinKitDoubleBounce(
-                    color: Colors.blue,
-                    size: 50.0,
-                  ),
-                )
-              : Container(),
-        ],
+        ),
+        appBar: AppBar(
+          title: Text("Google"),
+          centerTitle: true,
+        ),
+        body: Stack(
+          children: <Widget>[
+            WebView(
+              initialUrl: 'https://www.google.com',
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (WebViewController webViewController) {
+                _completer.complete(webViewController);
+              },
+              onPageFinished: (finish) {
+                setState(() {
+                  _isLoadingPage = false;
+                });
+              },
+            ),
+            _isLoadingPage
+                ? Container(
+                    alignment: FractionalOffset.center,
+                    child: SpinKitDoubleBounce(
+                      color: Colors.blue,
+                      size: 50.0,
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
       ),
     );
   }
