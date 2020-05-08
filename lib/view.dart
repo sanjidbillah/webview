@@ -64,7 +64,7 @@ class _ViewState extends State<View> {
         body: Stack(
           children: <Widget>[
             WebView(
-              initialUrl: 'https://www.google.com',
+              initialUrl: 'https://grocery.jalsiri.com/',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (WebViewController webViewController) {
                 _completer.complete(webViewController);
